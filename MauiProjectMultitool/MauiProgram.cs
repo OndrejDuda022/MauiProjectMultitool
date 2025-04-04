@@ -13,6 +13,8 @@ namespace MauiProjectMultitool
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("PlayfairDisplay-VariableFont_wght.ttf", "PlayfairDisplay");
+                    fonts.AddFont("Raleway-VariableFont_wght.ttf", "Raleway");
                 });
 
 #if DEBUG

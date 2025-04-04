@@ -2,23 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MauiProjectMultitool"
+             xmlns:models="clr-namespace:MauiProjectMultitool.Models"
              x:Class="MauiProjectMultitool.MainPage">
+    <Grid
+        RowDefinitions="10*, 90*">
+        <Label  
+           HorizontalOptions="Center"  
+           VerticalOptions="Center" 
+           TextColor="{StaticResource HeaderText}"
+           FontSize="Title"
+           Text="MULTI-TOOL"/>
+        <Grid
+            Grid.Row="1"
+            RowDefinitions="*, *, *, *"
+            RowSpacing="5"
+            ColumnDefinitions="*, *"
+            ColumnSpacing="5"
+            BackgroundColor="{StaticResource MidnightBlue}"
+            Padding="5">
+            <!-- Add your content here -->
+            <models:Sensor Name="Sensor 1" Grid.ColumnSpan="1" />
+            <models:Sensor Name="Sensor 2" Grid.Column="1" />
+            <models:Sensor Name="Sensor 3" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <models:Sensor Name="Sensor 4" Grid.Column="0" Grid.Row="3" />
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Grid
-                RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
-                RowSpacing="5"
-                ColumnDefinitions="*, *"
-                BackgroundColor="Magenta"
-                Padding="5">
-                <!-- Add your content here -->
-                <local:Sensor Name="Sensor 1" Grid.ColumnSpan="1" />
-                <local:Sensor Name="Sensor 2" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
-            </Grid>
-        </VerticalStackLayout>
-    </ScrollView>
-
+        </Grid>
+    </Grid>
 </ContentPage>

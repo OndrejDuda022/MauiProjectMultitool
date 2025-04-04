@@ -42,4 +42,8 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!-- My colors -->
+    <Color x:Key="MidnightViolet">#2E003E</Color>
+    <Color x:Key="HeaderText">RoyalBlue</Color>
 </ResourceDictionary>
