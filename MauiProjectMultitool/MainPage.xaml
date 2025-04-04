@@ -5,7 +5,8 @@
              xmlns:models="clr-namespace:MauiProjectMultitool.Models"
              x:Class="MauiProjectMultitool.MainPage">
     <Grid
-        RowDefinitions="10*, 90*">
+        RowDefinitions="10*, 90*"
+        BackgroundColor="{AppThemeBinding Light={StaticResource HeaderLight}, Dark={StaticResource HeaderDark}}">
         <Label  
            HorizontalOptions="Center"  
            VerticalOptions="Center" 
@@ -18,7 +19,7 @@
             RowSpacing="5"
             ColumnDefinitions="*, *"
             ColumnSpacing="5"
-            BackgroundColor="{StaticResource MidnightBlue}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}"
             Padding="5">
             <!-- Add your content here -->
             <models:Sensor Name="Sensor 1" Grid.ColumnSpan="1" />

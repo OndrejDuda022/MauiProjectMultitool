@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiProjectMultitool.Models.Sensor">
-    <Frame BackgroundColor="{StaticResource OffBlack}"
+    <Frame BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
            CornerRadius="10"
            Padding="0"
            HasShadow="True">
