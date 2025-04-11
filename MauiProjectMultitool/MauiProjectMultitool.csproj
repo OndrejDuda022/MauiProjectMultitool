@@ -63,6 +63,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Models\AccelerometerSensor.xaml.cs">
+	    <DependentUpon>AccelerometerSensor.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Models\AccelerometerSensor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Models\Sensor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

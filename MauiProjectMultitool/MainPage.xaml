@@ -26,6 +26,7 @@
             <models:Sensor Name="Sensor 2" Grid.Column="1" />
             <models:Sensor Name="Sensor 3" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
             <models:Sensor Name="Sensor 4" Grid.Column="0" Grid.Row="3" />
+            <models:AccelerometerSensor Name="Accelerometer" Grid.Column="1" Grid.Row="3" />
 
         </Grid>
     </Grid>

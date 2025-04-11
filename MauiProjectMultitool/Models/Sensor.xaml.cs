@@ -16,4 +16,11 @@ public partial class Sensor : ContentView
         InitializeComponent();
         BindingContext = this;
     }
+
+    private int count = 0;
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        count++;
+        SensorButton.Text = $"Clicked {count} times.";
+    }
 }
