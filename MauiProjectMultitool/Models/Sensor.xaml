@@ -8,7 +8,8 @@
            <StackLayout>  
                 <Label   
                     Text="{Binding Name}"   
-                    HorizontalOptions="Center"/>  
+                    HorizontalOptions="Center"
+                    Padding="10"/>  
                 <Button  
                     Text="Click Me"  
                     Clicked="Button_Clicked" 

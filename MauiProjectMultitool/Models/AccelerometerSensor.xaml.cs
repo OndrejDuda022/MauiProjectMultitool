@@ -1,4 +1,4 @@
-namespace MauiProjectMultitool.Models;
+﻿namespace MauiProjectMultitool.Models;
 
 public partial class AccelerometerSensor : ContentView
 {
@@ -32,13 +32,11 @@ public partial class AccelerometerSensor : ContentView
             }
             else
             {
-                AccelLabel.TextColor = Colors.LightGray;
                 AccelLabel.Text = "Accelerometer not supported on this device.";
             }
         }
         catch (Exception ex)
         {
-            AccelLabel.TextColor = Colors.LightGray;
             AccelLabel.Text = $"Error: {ex.Message}";
         }
     }
@@ -48,21 +46,32 @@ public partial class AccelerometerSensor : ContentView
         MainThread.BeginInvokeOnMainThread(() =>
         {
             var acceleration = e.Reading.Acceleration;
-            var speedThreshold = 1.5; // Adjust this threshold as needed
 
-            if (Math.Abs(acceleration.X) > speedThreshold ||
-                Math.Abs(acceleration.Y) > speedThreshold ||
-                Math.Abs(acceleration.Z) > speedThreshold)
-            {
-                AccelLabel.TextColor = Colors.Pink; // Change text color to pink if speed increases
-            }
-            else
-            {
-                AccelLabel.TextColor = Colors.Lavender; // Default color
-            }
+            var speed = Math.Sqrt(
+                Math.Pow(acceleration.X, 2) +
+                Math.Pow(acceleration.Y, 2) +
+                Math.Pow(acceleration.Z, 2)
+            );
 
-            AccelLabel.Text = $"Accel: X={acceleration.X}, Y={acceleration.Y}, Z={acceleration.Z}";
+            var minSpeed = 2.0; // Minimum speed (green)
+            var maxSpeed = 5.0; // Maximum speed (red)
+
+            var normalizedSpeed = Math.Min(1.0, Math.Max(0.0, (speed - minSpeed) / (maxSpeed - minSpeed)));
+            var borderColor = InterpolateColor(Colors.Green, Colors.Red, normalizedSpeed);
+
+            sensorFrame.BorderColor = borderColor;
+
+            AccelLabel.Text = $"{speed:F2} m/s";
         });
+    }
+
+    private Color InterpolateColor(Color startColor, Color endColor, double t)
+    {
+        return new Color(
+            (float)(startColor.Red + (endColor.Red - startColor.Red) * t),
+            (float)(startColor.Green + (endColor.Green - startColor.Green) * t),
+            (float)(startColor.Blue + (endColor.Blue - startColor.Blue) * t)
+        );
     }
 
 
