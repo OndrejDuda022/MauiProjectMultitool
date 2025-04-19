@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProjectMultitool.Models.CompassSensor">
+    <Frame x:Name="sensorFrame"
+           BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
+           CornerRadius="10"
+           HasShadow="True">
+        <StackLayout>
+            <Label 
+                Text="{Binding Name}" 
+                HorizontalOptions="Center"
+                FontSize="20"
+                TextColor="Black" />
+
+            <Grid>
+                <Ellipse Stroke="Azure" StrokeThickness="2" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <!-- Rotating Arrow -->
+                <Image x:Name="CompassArrow" Source="arrow.png" WidthRequest="50" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image.Rotation>0</Image.Rotation>
+                </Image>
+            </Grid>
+            
+            <Label x:Name="CompassLabel"
+               Text="Compass not active"
+               TextColor="LightGray"
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="End" />
+        </StackLayout>
+    </Frame>
+</ContentView>

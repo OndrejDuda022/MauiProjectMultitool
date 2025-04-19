@@ -74,7 +74,6 @@ public partial class AccelerometerSensor : ContentView
         );
     }
 
-
     public AccelerometerSensor()
     {
         InitializeComponent();

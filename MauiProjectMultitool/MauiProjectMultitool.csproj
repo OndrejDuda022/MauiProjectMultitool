@@ -72,6 +72,15 @@
 	  <MauiXaml Update="Models\AccelerometerSensor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Models\CompassSensor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Models\GyroscopeSensor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Models\MagnetometerSensor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Models\Sensor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
