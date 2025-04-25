@@ -23,6 +23,9 @@ public partial class CompassSensor : ContentView
             }
             else
             {
+
+            }
+            {
                 // Turn off compass
                 Compass.Default.Stop();
                 Compass.Default.ReadingChanged -= Compass_ReadingChanged;
@@ -36,7 +39,12 @@ public partial class CompassSensor : ContentView
         {
             var azimuth = e.Reading.HeadingMagneticNorth;
 
-            CompassArrow.Rotation = azimuth;
+            CompassGrid.Rotation = azimuth;
+            CompassArrow.Rotation = -azimuth;
+            North.Rotation = -azimuth;
+            South.Rotation = -azimuth;
+            East.Rotation = -azimuth;
+            West.Rotation = -azimuth;
 
             var direction = GetDirectionFromAzimuth(azimuth);
 

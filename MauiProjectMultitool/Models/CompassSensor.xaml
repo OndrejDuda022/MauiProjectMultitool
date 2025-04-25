@@ -9,23 +9,32 @@
         <StackLayout>
             <Label 
                 Text="{Binding Name}" 
-                HorizontalOptions="Center"
-                FontSize="20"
-                TextColor="Black" />
+                HorizontalOptions="Center"/>
+            <Grid 
+                x:Name="CompassGrid"
+                RowDefinitions="*,*,*,*,*,*,*"
+                ColumnDefinitions="*,*,*,*,*,*,*"
+                WidthRequest="250"
+                HeightRequest="250"
+                Padding="5">
+                <!-- Outer Circle -->
+                <Ellipse Stroke="Azure" StrokeThickness="1.5" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" />
 
-            <Grid>
-                <Ellipse Stroke="Azure" StrokeThickness="2" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+                <!-- Direction Labels -->
+                <Label x:Name ="North" Text="N" FontSize="16" HorizontalOptions="Center" VerticalOptions="Start" Grid.Column="3" />
+                <Label x:Name ="East" Text="E" FontSize="16" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.Column="6"/>
+                <Label x:Name ="South" Text="S" FontSize="16" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="6" Grid.Column="3"/>
+                <Label x:Name ="West" Text="W" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="3"/>
 
                 <!-- Rotating Arrow -->
-                <Image x:Name="CompassArrow" Source="arrow.png" WidthRequest="50" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image x:Name="CompassArrow" Source="arrow.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="3">
                     <Image.Rotation>0</Image.Rotation>
                 </Image>
             </Grid>
-            
             <Label x:Name="CompassLabel"
                Text="Compass not active"
                TextColor="LightGray"
-               FontSize="20"
+               FontSize="15"
                HorizontalOptions="Center"
                VerticalOptions="End" />
         </StackLayout>
