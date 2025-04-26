@@ -66,6 +66,9 @@
 	  <Compile Update="Models\AccelerometerSensor.xaml.cs">
 	    <DependentUpon>AccelerometerSensor.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Models\OrientSensor.xaml.cs">
+	    <DependentUpon>OrientSensor.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -79,6 +82,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Models\MagnetometerSensor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Models\OrientSensor.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Models\Sensor.xaml">

@@ -6,17 +6,26 @@
        BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
        CornerRadius="10"
        HasShadow="True"
-       BorderColor="Azure">
-        <StackLayout>
-            <Label 
-                Text="{Binding Name}" 
-                HorizontalOptions="Center"/>
-            <Label x:Name="AccelLabel"
-                           Text="Accelerometer not active"
-                           TextColor="LightGray"
-                           FontSize="30"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
-        </StackLayout>
+       BorderColor="LightGrey"
+       Padding="0">
+        <AbsoluteLayout>
+            <CheckBox x:Name="ToggleCheckBox"
+                AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                CheckedChanged="ToggleCheckBox_Changed"/>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.5, 0.3, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Label 
+                    Text="{Binding Name}" 
+                    HorizontalOptions="Center"/>
+                <Label x:Name="AccelLabel"
+                    Text="Accelerometer not active"
+                    TextColor="LightGray"
+                    FontSize="15"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </AbsoluteLayout>
     </Frame>
 </ContentView>

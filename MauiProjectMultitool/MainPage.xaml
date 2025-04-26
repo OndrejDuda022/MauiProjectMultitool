@@ -23,7 +23,7 @@
             Padding="5">
             <!-- Add your content here -->
             <models:MagnetometerSensor Name="Magnetometer" />
-            <models:Sensor Name="Sensor 2" Grid.Column="1" />
+            <models:OrientSensor Name="Orientation" Grid.Column="1" />
             <models:CompassSensor Name="Compass" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
             <models:GyroscopeSensor Name="Gyroscope" Grid.Column="0" Grid.Row="3" />
             <models:AccelerometerSensor Name="Accelerometer" Grid.Column="1" Grid.Row="3" />

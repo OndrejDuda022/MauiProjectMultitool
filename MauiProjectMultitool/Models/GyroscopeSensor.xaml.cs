@@ -2,6 +2,8 @@ namespace MauiProjectMultitool.Models;
 
 public partial class GyroscopeSensor : ContentView
 {
+    private const string GyroscopeCheckboxKey = "GyroscopeCheckboxState";
+
     public static readonly BindableProperty NameProperty =
         BindableProperty.Create(nameof(Name), typeof(string), typeof(GyroscopeSensor), default(string));
 
@@ -10,21 +12,22 @@ public partial class GyroscopeSensor : ContentView
         get => (string)GetValue(NameProperty);
         set => SetValue(NameProperty, value);
     }
+
     private void ToggleGyroscope()
     {
         if (Gyroscope.Default.IsSupported)
         {
             if (!Gyroscope.Default.IsMonitoring)
             {
-                // Turn on gyroscope
                 Gyroscope.Default.ReadingChanged += Gyroscope_ReadingChanged;
                 Gyroscope.Default.Start(SensorSpeed.Default);
+                GyroLabel.FontSize = 20;
             }
             else
             {
-                // Turn off gyroscope
                 Gyroscope.Default.Stop();
                 Gyroscope.Default.ReadingChanged -= Gyroscope_ReadingChanged;
+                DisableGyroscope();
             }
         }
     }
@@ -41,7 +44,7 @@ public partial class GyroscopeSensor : ContentView
 
             GyroLabel.Text = $"X: {x} rad/s\nY: {y} rad/s\nZ: {z} rad/s";
 
-            var maxAngularVelocity = 10.0; // Max
+            var maxAngularVelocity = 10.0;
             var normalizedValue = Math.Min(1.0, Math.Sqrt(
                 Math.Pow(angularVelocity.X, 2) +
                 Math.Pow(angularVelocity.Y, 2) +
@@ -62,10 +65,49 @@ public partial class GyroscopeSensor : ContentView
         );
     }
 
+    private void DisableGyroscope()
+    {
+        sensorFrame.BorderColor = Colors.Gray;
+        GyroLabel.Text = "Gyroscope not active";
+        GyroLabel.FontSize = 15;
+    }
+
+    private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value)
+        {
+            ToggleGyroscope();
+        }
+        else
+        {
+            ToggleGyroscope();
+        }
+
+        Preferences.Set(GyroscopeCheckboxKey, e.Value);
+    }
+
     public GyroscopeSensor()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = this;
-        ToggleGyroscope();
+
+        if (Preferences.ContainsKey(GyroscopeCheckboxKey))
+        {
+            var isChecked = Preferences.Get(GyroscopeCheckboxKey, true);
+
+            if (isChecked)
+            {
+                ToggleCheckBox.IsChecked = isChecked;
+            }
+            else
+            {
+                DisableGyroscope();
+            }
+        }
+        else
+        {
+            ToggleCheckBox.IsChecked = true;
+            Preferences.Set(GyroscopeCheckboxKey, true);
+        }
     }
 }

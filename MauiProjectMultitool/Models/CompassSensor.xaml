@@ -5,38 +5,53 @@
     <Frame x:Name="sensorFrame"
            BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
            CornerRadius="10"
-           HasShadow="True">
-        <StackLayout>
-            <Label 
-                Text="{Binding Name}" 
-                HorizontalOptions="Center"/>
-            <Grid 
-                x:Name="CompassGrid"
-                RowDefinitions="*,*,*,*,*,*,*"
-                ColumnDefinitions="*,*,*,*,*,*,*"
-                WidthRequest="250"
-                HeightRequest="250"
-                Padding="5">
-                <!-- Outer Circle -->
-                <Ellipse Stroke="Azure" StrokeThickness="1.5" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" />
+           HasShadow="True"
+           BorderColor="LightGrey"
+           Padding="0">
+        <AbsoluteLayout>
+            <CheckBox x:Name="ToggleCheckBox"
+                      AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
+                      AbsoluteLayout.LayoutFlags="PositionProportional"
+                      CheckedChanged="ToggleCheckBox_Changed"/>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.5, 0.3, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Label 
+                    Text="{Binding Name}" 
+                    HorizontalOptions="Center" />
+                <AbsoluteLayout>
+                    <BoxView BackgroundColor="LightGrey" WidthRequest="1" HeightRequest="10" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="1" Grid.RowSpan="1" Grid.Column="3"
+                             AbsoluteLayout.LayoutBounds="0.5, 0.15, -1, -1"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Grid 
+                        x:Name="CompassGrid"
+                        RowDefinitions="*,*,*,*,*,*,*"
+                        ColumnDefinitions="*,*,*,*,*,*,*"
+                        WidthRequest="250"
+                        HeightRequest="250"
+                        Padding="5"
+                        AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                        AbsoluteLayout.LayoutFlags="PositionProportional">
+                        <!-- Outer Circle -->
+                        <Ellipse x:Name="compassSphere" Stroke="Azure" StrokeThickness="1.5" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" />
 
-                <!-- Direction Labels -->
-                <Label x:Name ="North" Text="N" FontSize="16" HorizontalOptions="Center" VerticalOptions="Start" Grid.Column="3" />
-                <Label x:Name ="East" Text="E" FontSize="16" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.Column="6"/>
-                <Label x:Name ="South" Text="S" FontSize="16" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="6" Grid.Column="3"/>
-                <Label x:Name ="West" Text="W" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="3"/>
+                        <!-- Direction Labels -->
+                        <Label x:Name ="North" Text="N" FontSize="16" HorizontalOptions="Center" VerticalOptions="Start" Grid.Column="3" />
+                        <Label x:Name ="East" Text="E" FontSize="16" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="3" Grid.Column="6"/>
+                        <Label x:Name ="South" Text="S" FontSize="16" HorizontalOptions="Center" VerticalOptions="End" Grid.Row="6" Grid.Column="3"/>
+                        <Label x:Name ="West" Text="W" FontSize="16" HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="3"/>
 
-                <!-- Rotating Arrow -->
-                <Image x:Name="CompassArrow" Source="arrow.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="3">
-                    <Image.Rotation>0</Image.Rotation>
-                </Image>
-            </Grid>
-            <Label x:Name="CompassLabel"
-               Text="Compass not active"
-               TextColor="LightGray"
-               FontSize="15"
-               HorizontalOptions="Center"
-               VerticalOptions="End" />
-        </StackLayout>
+                        <!-- Pointing Arrow -->
+                        <Image x:Name="CompassArrow" Source="arrow.png" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="3" Grid.Column="3" />
+                    </Grid>
+                </AbsoluteLayout>
+                <Label x:Name="compassLabel"
+                       Text="Compass not active"
+                       TextColor="LightGray"
+                       FontSize="15"
+                       HorizontalOptions="Center"
+                       VerticalOptions="End" />
+            </StackLayout>
+        </AbsoluteLayout>
     </Frame>
 </ContentView>

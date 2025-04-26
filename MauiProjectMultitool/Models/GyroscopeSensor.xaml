@@ -3,20 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiProjectMultitool.Models.GyroscopeSensor">
     <Frame x:Name="sensorFrame"
-       BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
-       CornerRadius="10"
-       HasShadow="True"
-       BorderColor="Azure">
-        <StackLayout>
-            <Label 
-                Text="{Binding Name}" 
-                HorizontalOptions="Center"/>
-            <Label x:Name="GyroLabel"
-                           Text="Gyroscope not active"
-                           TextColor="LightGray"
-                           FontSize="20"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center" />
-        </StackLayout>
+           BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
+           CornerRadius="10"
+           HasShadow="True"
+           BorderColor="LightGrey"
+           Padding="0">
+        <AbsoluteLayout>
+            <CheckBox x:Name="ToggleCheckBox"
+                      AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
+                      AbsoluteLayout.LayoutFlags="PositionProportional"
+                      CheckedChanged="ToggleCheckBox_Changed"/>
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.5, 0.3, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Label 
+                    Text="{Binding Name}" 
+                    HorizontalOptions="Center" />
+                <Label x:Name="GyroLabel"
+                       Text="Gyroscope not active"
+                       TextColor="LightGray"
+                       FontSize="15"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </StackLayout>
+        </AbsoluteLayout>
     </Frame>
 </ContentView>

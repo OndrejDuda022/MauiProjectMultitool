@@ -2,6 +2,8 @@
 
 public partial class AccelerometerSensor : ContentView
 {
+    private const string AccelerometerCheckboxKey = "AccelerometerCheckboxState"; // Key for storing the checkbox state
+
     public static readonly BindableProperty NameProperty =
         BindableProperty.Create(nameof(Name), typeof(string), typeof(AccelerometerSensor), default(string));
 
@@ -11,7 +13,7 @@ public partial class AccelerometerSensor : ContentView
         set => SetValue(NameProperty, value);
     }
 
-    public void ToggleAccelerometer()
+    private void ToggleAccelerometer()
     {
         try
         {
@@ -22,12 +24,14 @@ public partial class AccelerometerSensor : ContentView
                     // Turn on accelerometer
                     Accelerometer.Default.ReadingChanged += Accelerometer_ReadingChanged;
                     Accelerometer.Default.Start(SensorSpeed.Default);
+                    AccelLabel.FontSize = 30;
                 }
                 else
                 {
                     // Turn off accelerometer
                     Accelerometer.Default.Stop();
                     Accelerometer.Default.ReadingChanged -= Accelerometer_ReadingChanged;
+                    DisableAccelerometer();
                 }
             }
             else
@@ -74,10 +78,50 @@ public partial class AccelerometerSensor : ContentView
         );
     }
 
+    private void DisableAccelerometer()
+    {
+        sensorFrame.BorderColor = Colors.Gray;
+        AccelLabel.Text = "Accelerometer not active";
+        AccelLabel.FontSize = 15;
+    }
+
+    private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value)
+        {
+            ToggleAccelerometer();
+            AccelLabel.FontSize = 30;
+        }
+        else
+        {
+            ToggleAccelerometer();
+        }
+
+        Preferences.Set(AccelerometerCheckboxKey, e.Value);
+    }
+
     public AccelerometerSensor()
     {
         InitializeComponent();
         BindingContext = this;
-        ToggleAccelerometer();
+
+        if (Preferences.ContainsKey(AccelerometerCheckboxKey))
+        {
+            var isChecked = Preferences.Get(AccelerometerCheckboxKey, true);
+
+            if (isChecked)
+            {
+                ToggleCheckBox.IsChecked = isChecked;
+            }
+            else
+            {
+                DisableAccelerometer();
+            }
+        }
+        else
+        {
+            ToggleCheckBox.IsChecked = true;
+            Preferences.Set(AccelerometerCheckboxKey, true);
+        }
     }
 }
