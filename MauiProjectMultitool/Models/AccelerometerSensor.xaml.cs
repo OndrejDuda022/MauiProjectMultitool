@@ -57,7 +57,10 @@ public partial class AccelerometerSensor : ContentView
                 Math.Pow(acceleration.Z, 2)
             );
 
-            var minSpeed = 2.0; // Minimum speed (green)
+            speed--; // Remove gravity effect
+            speed = Math.Max(0, speed);
+
+            var minSpeed = 1.0; // Minimum speed (green)
             var maxSpeed = 5.0; // Maximum speed (red)
 
             var normalizedSpeed = Math.Min(1.0, Math.Max(0.0, (speed - minSpeed) / (maxSpeed - minSpeed)));

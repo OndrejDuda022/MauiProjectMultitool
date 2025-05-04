@@ -45,7 +45,7 @@ public partial class CompassSensor : ContentView
 
             var direction = GetDirectionFromAzimuth(azimuth);
 
-            compassLabel.Text = $"Azimuth: {azimuth:F2}°\nDirection: {direction}";
+            compassLabel.Text = $"Azimuth: {azimuth:F2}° - Direction: {direction}";
         });
     }
 
@@ -106,10 +106,19 @@ public partial class CompassSensor : ContentView
         Preferences.Set(CompassCheckboxKey, e.Value);
     }
 
+    private void OnSensorSizeChanged(object sender, EventArgs e)
+    {
+        double sensorHeight = SensorLayout.Height;
+        CompassGrid.HeightRequest = sensorHeight * 0.8;
+        CompassGrid.WidthRequest = sensorHeight * 0.8;
+        CompassArrow.HeightRequest = sensorHeight * 0.115;
+    }
+
     public CompassSensor()
     {
         InitializeComponent();
         BindingContext = this;
+        
 
         if (Preferences.ContainsKey(CompassCheckboxKey))
         {

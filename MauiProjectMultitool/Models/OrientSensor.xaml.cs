@@ -40,20 +40,27 @@ public partial class OrientSensor : ContentView
         {
             var orientation = e.Reading.Orientation;
 
-            double pitch = Math.Asin(2 * (orientation.W * orientation.Y - orientation.Z * orientation.X)) * (180 / Math.PI);
-            double roll = Math.Atan2(2 * (orientation.W * orientation.X + orientation.Y * orientation.Z), 1 - 2 * (orientation.X * orientation.X + orientation.Y * orientation.Y)) * (180 / Math.PI);
-            double yaw = Math.Atan2(2 * (orientation.W * orientation.Z + orientation.X * orientation.Y), 1 - 2 * (orientation.Y * orientation.Y + orientation.Z * orientation.Z)) * (180 / Math.PI);
+            double pitch = Math.Atan2(2 * (orientation.W * orientation.X + orientation.Y * orientation.Z), 1 - 2 * (orientation.X * orientation.X + orientation.Y * orientation.Y)) * (180 / Math.PI);
+            double roll = Math.Asin(2 * (orientation.W * orientation.Y - orientation.Z * orientation.X)) * (180 / Math.PI);
 
-            OriLabel.Text = $"Pitch: {pitch:F1}°\nRoll: {roll:F1}°\nYaw: {yaw:F1}°";
+            OriLabel.Text = $"Pitch: {pitch:F1}°\nRoll: {roll:F1}°";
+
+            const double maxOffset = 80;
+            double xOffset = Math.Clamp(roll / 45.0 * maxOffset, -maxOffset, maxOffset);
+            double yOffset = Math.Clamp(pitch / 45.0 * maxOffset, -maxOffset, maxOffset);
+
+            Bubble.TranslationX = xOffset;
+            Bubble.TranslationY = -yOffset;
         });
     }
-
 
     private void DisableOrientation()
     {
         sensorFrame.BorderColor = Colors.Gray;
         OriLabel.Text = "Orientation not active";
         OriLabel.FontSize = 15;
+        Bubble.TranslationX = 0;
+        Bubble.TranslationY = 0;
     }
 
     private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)

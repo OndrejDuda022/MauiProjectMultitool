@@ -13,19 +13,17 @@
                 AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 CheckedChanged="ToggleCheckBox_Changed"/>
-            <StackLayout
-                AbsoluteLayout.LayoutBounds="0.5, 0.3, -1, -1"
-                AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Label 
-                    Text="{Binding Name}" 
-                    HorizontalOptions="Center"/>
-                <Label x:Name="AccelLabel"
-                    Text="Accelerometer not active"
-                    TextColor="LightGray"
-                    FontSize="15"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
-            </StackLayout>
+            <Label 
+                Text="{Binding Name}" 
+                HorizontalOptions="Center"
+                AbsoluteLayout.LayoutBounds="0.5, 0.2"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Label x:Name="AccelLabel"
+                Text="Accelerometer not active"
+                TextColor="LightGray"
+                FontSize="30"
+                AbsoluteLayout.LayoutBounds="0.5, 0.4"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         </AbsoluteLayout>
     </Frame>
 </ContentView>

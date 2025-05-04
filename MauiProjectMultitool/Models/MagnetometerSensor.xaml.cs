@@ -21,7 +21,7 @@ public partial class MagnetometerSensor : ContentView
             {
                 Magnetometer.Default.ReadingChanged += Magnetometer_ReadingChanged;
                 Magnetometer.Default.Start(SensorSpeed.Default);
-                MagLabel.FontSize = 20;
+                MagLabel.FontSize = 30;
             }
             else
             {
@@ -38,17 +38,13 @@ public partial class MagnetometerSensor : ContentView
         {
             var magneticField = e.Reading.MagneticField;
 
-            var x = magneticField.X.ToString("F2");
-            var y = magneticField.Y.ToString("F2");
-            var z = magneticField.Z.ToString("F2");
-
-            MagLabel.Text = $"X: {x} µT\nY: {y} µT\nZ: {z} µT";
-
             var totalField = Math.Sqrt(
                 Math.Pow(magneticField.X, 2) +
                 Math.Pow(magneticField.Y, 2) +
                 Math.Pow(magneticField.Z, 2)
             );
+
+            MagLabel.Text = $"{totalField:F2} µT";
 
             var maxField = 100.0;
             var normalizedValue = Math.Min(1.0, totalField / maxField);
@@ -57,6 +53,7 @@ public partial class MagnetometerSensor : ContentView
             sensorFrame.BorderColor = borderColor;
         });
     }
+
 
     private Color InterpolateColor(Color startColor, Color endColor, double t)
     {

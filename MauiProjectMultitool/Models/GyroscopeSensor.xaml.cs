@@ -22,6 +22,7 @@ public partial class GyroscopeSensor : ContentView
                 Gyroscope.Default.ReadingChanged += Gyroscope_ReadingChanged;
                 Gyroscope.Default.Start(SensorSpeed.Default);
                 GyroLabel.FontSize = 20;
+                AbsoluteLayout.SetLayoutBounds(GyroLabel, new Rect(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
             }
             else
             {
@@ -38,17 +39,17 @@ public partial class GyroscopeSensor : ContentView
         {
             var angularVelocity = e.Reading.AngularVelocity;
 
-            var x = angularVelocity.X.ToString("F2");
-            var y = angularVelocity.Y.ToString("F2");
-            var z = angularVelocity.Z.ToString("F2");
+            var x = Math.Max(0, angularVelocity.X).ToString("F2");
+            var y = Math.Max(0, angularVelocity.Y).ToString("F2");
+            var z = Math.Max(0, angularVelocity.Z).ToString("F2");
 
             GyroLabel.Text = $"X: {x} rad/s\nY: {y} rad/s\nZ: {z} rad/s";
 
             var maxAngularVelocity = 10.0;
             var normalizedValue = Math.Min(1.0, Math.Sqrt(
-                Math.Pow(angularVelocity.X, 2) +
-                Math.Pow(angularVelocity.Y, 2) +
-                Math.Pow(angularVelocity.Z, 2)
+                Math.Pow(Math.Max(0, angularVelocity.X), 2) +
+                Math.Pow(Math.Max(0, angularVelocity.Y), 2) +
+                Math.Pow(Math.Max(0, angularVelocity.Z), 2)
             ) / maxAngularVelocity);
 
             var borderColor = InterpolateColor(Colors.Green, Colors.Red, normalizedValue);
@@ -70,6 +71,7 @@ public partial class GyroscopeSensor : ContentView
         sensorFrame.BorderColor = Colors.Gray;
         GyroLabel.Text = "Gyroscope not active";
         GyroLabel.FontSize = 15;
+        AbsoluteLayout.SetLayoutBounds(GyroLabel, new Rect(0.5, 0.4, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
     }
 
     private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)
