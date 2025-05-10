@@ -6,9 +6,25 @@
            BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
            CornerRadius="10"
            HasShadow="True"
-           BorderColor="LightGrey"
+           BorderColor="DarkGrey"
            Padding="0">
         <AbsoluteLayout>
+            <!-- Spirit Level -->
+            <Grid AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.8"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Center">
+
+                <!-- Bubble -->
+                <Ellipse x:Name="Bubble"
+                 Fill="{StaticResource ExpressiveBlue}"
+                 Stroke="{StaticResource ExpressiveBlue}"
+                 WidthRequest="30"
+                 HeightRequest="30"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center" />
+            </Grid>
+            
             <CheckBox x:Name="ToggleCheckBox"
                       AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
                       AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -19,24 +35,9 @@
                 AbsoluteLayout.LayoutBounds="0.5, 0.2"
                 AbsoluteLayout.LayoutFlags="PositionProportional"/>
 
-            <!-- Spirit Level -->
-            <Grid AbsoluteLayout.LayoutBounds="0.5, 0.5, 0.8, 0.8"
-                  AbsoluteLayout.LayoutFlags="All"
-                  BackgroundColor="Transparent"
-                  HorizontalOptions="Center">
-
-                <!-- Bubble -->
-                <Ellipse x:Name="Bubble"
-                         Fill="{StaticResource HeaderText}"
-                         WidthRequest="30"
-                         HeightRequest="30"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
-            </Grid>
-
             <Label x:Name="OriLabel"
                    Text="Orientation not active"
-                   TextColor="LightGray"
+                   TextColor="{AppThemeBinding Light=Black, Dark= LightGray}"
                    FontSize="15"
                    AbsoluteLayout.LayoutBounds="0.5, 0.9, -1, -1"
                    AbsoluteLayout.LayoutFlags="PositionProportional"

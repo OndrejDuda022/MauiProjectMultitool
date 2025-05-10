@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProjectMultitool.Pages.Settings"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Settings">
+    <Grid  
+    RowDefinitions="10*, 90*"  
+    BackgroundColor="{AppThemeBinding Light={StaticResource HeaderLight}, Dark={StaticResource HeaderDark}}">
+        <AbsoluteLayout
+            Grid.Row="0">
+            <Label
+               AbsoluteLayout.LayoutBounds="0.5, 0.5"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               TextColor="{StaticResource ExpressiveBlue}"  
+               FontSize="Title"  
+               Text="Settings"/>
+            <Image  
+               x:Name="arrow"
+               Source="arrow.png"  
+               AbsoluteLayout.LayoutBounds="0.05, 0.5"  
+               AbsoluteLayout.LayoutFlags="PositionProportional"  
+               Rotation="180"
+               HeightRequest="25">
+                <Image.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="Gray" />
+                </Image.Behaviors>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnReturnTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+        <StackLayout  
+           Grid.Row="1"
+           Padding="20"
+           BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}">
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
+                CornerRadius="10"   
+                HasShadow="True"
+                BorderColor="Grey"
+                Padding="10">
+                <HorizontalStackLayout
+                    Spacing="10">
+                    <Label  
+                        Text="App theme:"
+                        VerticalOptions="Center"/>
+                    <Button
+                        x:Name="buttAuto"
+                        Clicked="OnThemeAutoClicked"
+                        Text="Auto"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Purple"/>
+                    <Button
+                        x:Name="buttDark"
+                        Clicked="OnThemeDarkClicked"
+                        Text="Dark"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Purple"/>
+                    <Button
+                        x:Name="buttLight"
+                        Clicked="OnThemeLightClicked"
+                        Text="Light"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        BackgroundColor="Purple"/>
+                </HorizontalStackLayout>
+            </Frame> 
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -54,5 +54,9 @@
     <Color x:Key="HeaderDark">#121212</Color>
     <Color x:Key="HeaderLight">#CCCCFF</Color>
 
-    <Color x:Key="HeaderText">RoyalBlue</Color>
+    <Color x:Key="ExpressiveBlue">#4169e1</Color>
+    <Color x:Key="ExpressiveBlueDark">#2f51b5</Color>
+
+    <Color x:Key="GalacticViolet">#ae1ae8</Color>
+    <Color x:Key="GalacticVioletDark">#7b0f9c</Color>
 </ResourceDictionary>

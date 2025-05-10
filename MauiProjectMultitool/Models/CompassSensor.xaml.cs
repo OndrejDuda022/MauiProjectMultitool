@@ -22,8 +22,16 @@ public partial class CompassSensor : ContentView
                 // Turn on compass
                 Compass.Default.ReadingChanged += Compass_ReadingChanged;
                 Compass.Default.Start(SensorSpeed.UI, applyLowPassFilter: true);
-                compassSphere.Stroke = Colors.Azure;
-                sensorFrame.BorderColor = Colors.LightGrey;
+                sensorFrame.BorderColor = Colors.DarkGrey;
+                directionLine.Opacity = 1;
+                if (Application.Current.Resources.TryGetValue("ExpressiveBlue", out var headerTextColor) && headerTextColor is Color color)
+                {
+                    compassSphere.Stroke = color;
+                }
+                else
+                {
+                    compassSphere.Stroke = Colors.Gray; // Fallback color
+                }
             }
             else
             {
@@ -90,6 +98,7 @@ public partial class CompassSensor : ContentView
         compassSphere.Stroke = Colors.Gray;
         sensorFrame.BorderColor = Colors.Gray;
         compassLabel.Text = "Compass not active";
+        directionLine.Opacity = 0;
     }
 
     private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)

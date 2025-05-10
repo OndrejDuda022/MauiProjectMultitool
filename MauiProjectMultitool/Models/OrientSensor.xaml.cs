@@ -1,3 +1,5 @@
+using System.Diagnostics.Tracing;
+
 namespace MauiProjectMultitool.Models;
 
 public partial class OrientSensor : ContentView
@@ -21,8 +23,17 @@ public partial class OrientSensor : ContentView
                 // Turn on orientation
                 OrientationSensor.Default.ReadingChanged += Orientation_ReadingChanged;
                 OrientationSensor.Default.Start(SensorSpeed.Default);
-                sensorFrame.BorderColor = Colors.LightGray;
+                sensorFrame.BorderColor = Colors.DarkGray;
                 OriLabel.FontSize = 20;
+                if (Application.Current.Resources.TryGetValue("ExpressiveBlue", out var headerTextColor) && headerTextColor is Color color)
+                {
+                    Bubble.Fill = color;
+                }
+                else
+                {
+                    Bubble.Fill = Colors.White; // Fallback color
+                }
+
             }
             else
             {
@@ -46,7 +57,7 @@ public partial class OrientSensor : ContentView
             OriLabel.Text = $"Pitch: {pitch:F1}°\nRoll: {roll:F1}°";
 
             const double maxOffset = 80;
-            double xOffset = Math.Clamp(roll / 45.0 * maxOffset, -maxOffset, maxOffset);
+            double xOffset = Math.Clamp(-roll / 45.0 * maxOffset, -maxOffset, maxOffset);
             double yOffset = Math.Clamp(pitch / 45.0 * maxOffset, -maxOffset, maxOffset);
 
             Bubble.TranslationX = xOffset;
@@ -61,6 +72,7 @@ public partial class OrientSensor : ContentView
         OriLabel.FontSize = 15;
         Bubble.TranslationX = 0;
         Bubble.TranslationY = 0;
+        Bubble.Fill = Colors.Transparent;
     }
 
     private void ToggleCheckBox_Changed(object sender, CheckedChangedEventArgs e)

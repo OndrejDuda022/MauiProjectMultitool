@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProjectMultitool.Pages.Help"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Settings">
+    <Grid  
+    RowDefinitions="10*, 90*"  
+    BackgroundColor="{AppThemeBinding Light={StaticResource HeaderLight}, Dark={StaticResource HeaderDark}}">
+        <AbsoluteLayout
+            Grid.Row="0">
+            <Label
+               AbsoluteLayout.LayoutBounds="0.5, 0.5"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               TextColor="{StaticResource ExpressiveBlue}"  
+               FontSize="Title"  
+               Text="Help"/>
+            <Image  
+               x:Name="arrow"
+               Source="arrow.png"  
+               AbsoluteLayout.LayoutBounds="0.05, 0.5"  
+               AbsoluteLayout.LayoutFlags="PositionProportional"  
+               Rotation="180"
+               HeightRequest="25">
+                <Image.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="Gray" />
+                </Image.Behaviors>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnReturnTapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+        <StackLayout  
+           Grid.Row="1"
+           Padding="20"
+           Spacing="10"
+           BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundLight}, Dark={StaticResource BackgroundDark}}">
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
+                CornerRadius="10"   
+                HasShadow="True"
+                BorderColor="Grey"
+                Padding="10">
+                <StackLayout
+                    Spacing="2">
+                    <Label  
+                        Text="Horizontal aligment:"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Text="Keep the device horizontally aligned. Otherwise some sensors may be innacurate."/>
+                </StackLayout>
+            </Frame>
+            <Frame
+                BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
+                CornerRadius="10"   
+                HasShadow="True"
+                BorderColor="Grey"
+                Padding="10">
+                <StackLayout
+                    Spacing="2">
+                    <Label  
+                        Text="Magnetic intereference:"
+                        VerticalOptions="Center"
+                        FontAttributes="Bold"/>
+                    <Label
+                        Text="Keep an eye on the magnetometer. If it shows high values (bordering red), do not trust the compass."/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>

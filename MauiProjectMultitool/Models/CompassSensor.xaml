@@ -6,7 +6,7 @@
            BackgroundColor="{AppThemeBinding Light={StaticResource SensorLight}, Dark={StaticResource SensorDark}}"
            CornerRadius="10"
            HasShadow="True"
-           BorderColor="LightGrey"
+           BorderColor="DarkGrey"
            Padding="0">
         <AbsoluteLayout
             x:Name="SensorLayout"
@@ -19,9 +19,9 @@
                 Text="{Binding Name}" 
                 AbsoluteLayout.LayoutBounds="0.5, 0.025"
                 AbsoluteLayout.LayoutFlags="PositionProportional"/>
-            
-            <BoxView BackgroundColor="LightGrey" WidthRequest="1" HeightRequest="10"
-                 AbsoluteLayout.LayoutBounds="0.5, 0.20"
+
+            <BoxView x:Name ="directionLine" BackgroundColor="{StaticResource ExpressiveBlueDark}" WidthRequest="1" HeightRequest="10"
+                 AbsoluteLayout.LayoutBounds="0.5, 0.209"
                  AbsoluteLayout.LayoutFlags="PositionProportional"/>
             <Grid 
                            x:Name="CompassGrid"
@@ -33,7 +33,7 @@
                            AbsoluteLayout.LayoutBounds="0.5, 0.45"
                            AbsoluteLayout.LayoutFlags="PositionProportional">
                            <!-- Outer Circle -->
-                           <Ellipse x:Name="compassSphere" Stroke="Azure" StrokeThickness="1.5" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" />
+                <Ellipse x:Name="compassSphere" Stroke="{StaticResource ExpressiveBlue}" StrokeThickness="1" HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="5" />
 
                            <!-- Direction Labels -->
                            <Label x:Name ="North" Text="N" FontSize="16" HorizontalOptions="Center" VerticalOptions="Start" Grid.Column="3" />
@@ -43,7 +43,7 @@
 
                            <!-- Pointing Arrow -->
                            <Image x:Name="CompassArrow"
-                                  Source="arrow.png"
+                                  Source="pointer.png"
                                   HeightRequest="40"
                                   HorizontalOptions="Center"
                                   VerticalOptions="Center"
@@ -52,7 +52,7 @@
                        </Grid>
             <Label x:Name="compassLabel"
                Text="Compass not active"
-               TextColor="LightGray"
+               TextColor="{AppThemeBinding Light=Black, Dark= LightGray}"
                FontSize="15"
                AbsoluteLayout.LayoutBounds="0.5, 0.95"
                AbsoluteLayout.LayoutFlags="PositionProportional"/>
